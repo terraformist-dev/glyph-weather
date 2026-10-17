@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Glyph Weather</string>
+    <string name="toy_summary">The weather where you are. Long-press for the temperature, again for today\'s high and low, and once more to go back.</string>
+</resources>

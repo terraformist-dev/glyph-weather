@@ -1,0 +1,47 @@
+name: Build app
+
+# Runs every time code is pushed to main, or when you tap "Run workflow" on GitHub.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build the app
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+
+      - name: Name the file
+        run: cp app/build/outputs/apk/debug/app-debug.apk glyph-weather.apk
+
+      - name: Keep a copy with this run
+        uses: actions/upload-artifact@v4
+        with:
+          name: glyph-weather-apk
+          path: glyph-weather.apk
+
+      - name: Publish as the latest download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "build-${{ github.run_number }}" glyph-weather.apk \
+            --target "${{ github.sha }}" \
+            --title "Glyph Weather · build ${{ github.run_number }}" \
+            --notes "Tap **glyph-weather.apk** below to download, then open it to install." \
+            --latest

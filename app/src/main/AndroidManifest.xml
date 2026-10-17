@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Lets the app draw on the Glyph Matrix -->
+    <uses-permission android:name="com.nothing.ketchum.permission.ENABLE" />
+
+    <!-- Keeps the weather animation running for a minute after you touch the Glyph Button -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Weather: rough location and the internet to fetch the forecast.
+         "All the time" location lets the Glyph Toy follow you when you travel;
+         without it, it uses the place you were last time the app was open. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Glyph Toy for the Glyph Matrix on the back -->
+        <service
+            android:name=".WeatherToyService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nothing.glyph.TOY" />
+            </intent-filter>
+            <meta-data
+                android:name="com.nothing.glyph.toy.name"
+                android:resource="@string/app_name" />
+            <meta-data
+                android:name="com.nothing.glyph.toy.image"
+                android:resource="@drawable/toy_preview" />
+            <meta-data
+                android:name="com.nothing.glyph.toy.summary"
+                android:resource="@string/toy_summary" />
+            <meta-data
+                android:name="com.nothing.glyph.toy.introduction"
+                android:value="dev.terraformist.glyphweather.MainActivity" />
+            <meta-data
+                android:name="com.nothing.glyph.toy.longpress"
+                android:value="1" />
+            <meta-data
+                android:name="com.nothing.glyph.toy.aod_support"
+                android:value="1" />
+        </service>
+    </application>
+</manifest>
