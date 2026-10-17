@@ -1,6 +1,6 @@
 # Glyph Weather
 
-The weather where you are, on the Glyph Matrix on the back of the Nothing Phone (3).
+A weather glyph toy for the Nothing Phone (3). Inspired by the Nothing Weather app.
 
 - It shows a dot picture of the current weather. Fog, drizzle, rain, heavy rain, snow, sleet and thunder have short animated loops.
 - **Long-press** the Glyph Button to see the temperature. Long-press again for today's high and low, and once more to go back to the picture.
@@ -12,8 +12,6 @@ The weather where you are, on the Glyph Matrix on the back of the Nothing Phone 
 3. Open the download and tap **Install** (allow your browser to install apps the first time).
 4. Open **Glyph Weather** once and allow location.
 5. Go to **Settings › Glyph Interface › Glyph Toys** and add **Glyph Weather**.
-
-New builds install over the old one.
 
 ## How it works
 
